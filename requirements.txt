@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pydantic>=2
+python-dotenv
+neo4j
+pandas
+openpyxl
+scikit-learn
+pytest
+
+# Optional -- only needed if you set ANTHROPIC_API_KEY to enable the LLM
+# answer-generation step. The system is fully functional without it (falls
+# back to a deterministic template answer).
+anthropic

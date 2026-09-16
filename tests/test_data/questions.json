@@ -1,0 +1,36 @@
+[
+  {"category": "valid", "question": "What pathologies does Brahmi treat?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "What actions does Vacha have?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "What physiological functions does Ashwagandha affect?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "What references support Brahmi?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "List all herbs", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "Which herbs affect Smriti?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "What conditions does Giloy help with?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "Tell me about Mandukaparni", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "What does Sankhpushpi treat?", "expected_status": "ANSWERABLE"},
+  {"category": "valid", "question": "What does Bacopa affect?", "expected_status": "ANSWERABLE"},
+
+  {"category": "invalid_out_of_domain", "question": "What is the capital of France?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "invalid_out_of_domain", "question": "Hi", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "invalid_out_of_domain", "question": "What comes after ABCD?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "invalid_out_of_domain", "question": "Who won the last World Cup?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "invalid_out_of_domain", "question": "Write me a poem about the sea.", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "invalid_out_of_domain", "question": "How do I bake a chocolate cake?", "expected_status": "OUT_OF_DOMAIN"},
+
+  {"category": "partial_insufficient_evidence", "question": "What is the mechanism of Tagara?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "partial_insufficient_evidence", "question": "What is the mechanism of Brahmi?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "partial_insufficient_evidence", "question": "What compounds does Brahmi contain?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "partial_insufficient_evidence", "question": "What is the dosage of Ashwagandha?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "partial_insufficient_evidence", "question": "What is the mechanism of Simhadi?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "partial_insufficient_evidence", "question": "What targets does Guduchi affect?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "partial_insufficient_evidence", "question": "What actions does Tagara have?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+
+  {"category": "hallucination_general_knowledge", "question": "What is the chemical formula of caffeine?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "hallucination_entity_not_in_dataset", "question": "What pathologies does Turmeric treat?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "hallucination_entity_not_in_dataset", "question": "What actions does Ginseng have?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "hallucination_outside_science", "question": "Is Brahmi FDA approved for Alzheimer's disease?", "expected_status": "ANSWERABLE", "note": "Known limitation: the keyword 'disease' triggers FIND_PATHOLOGIES_TREATED, so the system returns Brahmi's real treated-pathology list from the dataset rather than recognizing this is really an FDA-approval question. It never fabricates an FDA claim (no ANSWERABLE text ever mentions FDA/approval), it just answers a related-but-different question with genuine evidence. See README Known Limitations."},
+  {"category": "hallucination_conversational", "question": "How are you today?", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "hallucination_conversational", "question": "Thanks!", "expected_status": "OUT_OF_DOMAIN"},
+  {"category": "hallucination_vocab_only_concept", "question": "What is the mechanism of Dravya?", "expected_status": "INSUFFICIENT_EVIDENCE"},
+  {"category": "hallucination_vocab_only_concept", "question": "What does Prabhava treat?", "expected_status": "INSUFFICIENT_EVIDENCE"}
+]

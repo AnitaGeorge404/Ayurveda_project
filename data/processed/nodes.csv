@@ -1,0 +1,254 @@
+node_type,canonical_name,aliases,source_files,source_rows
+Action,Smritiprada,,relationships_medhya.txt,2
+Action,Vakvishudhi,,relationships_medhya.txt,75
+Category,Medhya Rasayana,,Category_Medhya.xlsx,2;10
+Category,Rasayana,,Category_Medhya.xlsx,3;11
+Category,Vanausadhi,,Category_Medhya.xlsx,4
+Herb,Ashwagandha,Ashvagandha;Winter cherry;Withania,Category_Medhya.xlsx;relationships_medhya.txt,5;29;30;31;6;109;110;111;112;113;114;115;116;117;118;119
+Herb,Brahmi,Bacopa;Jalabrahmi,Category_Medhya.xlsx;relationships_medhya.txt,6;13;14;3;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37
+Herb,Guduchi,Amrita;Giloy;Gudduci,Category_Medhya.xlsx;relationships_medhya.txt,10;20;21;22;5;102;103;104;105;106;107;108
+Herb,Jatamansi,,relationships_medhya.txt,98;99;100;101
+Herb,Mandukaparni,Gotu kola;Mandukparni;Thankuni,Category_Medhya.xlsx;relationships_medhya.txt,8;15;16;17;8;38;39;40;41;42;43;44;45;46;47;48;49;50
+Herb,Shankhapushpi,Sankhpushpi;Shankhpushpi,Category_Medhya.xlsx;relationships_medhya.txt,9;18;19;9;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;67;68;69;70;71;72;73;74
+Herb,Simhadi,,Category_Medhya.xlsx,12
+Herb,Tagara,,relationships_medhya.txt,96;97
+Herb,Vacha,Calamus;Sweet flag;Vaca,Category_Medhya.xlsx;relationships_medhya.txt,7;26;27;28;4;75;76;77;78;79;80;81;82;83;84;85;86;87;88;89;90;91;92;93;94;95
+Herb,Yashtimadhu,Licorice;Mulethi;Yashti,Category_Medhya.xlsx;relationships_medhya.txt,11;23;24;25;7;120;121;122;123
+Pathology,Anavasthita Citta,,Category_Medhya.xlsx;relationships_medhya.txt,32;18;44
+Pathology,Apasmara,,Category_Medhya.xlsx;relationships_medhya.txt,7;21;62
+Pathology,Asvastha Manas,,Category_Medhya.xlsx,29
+Pathology,Avāk,,Category_Medhya.xlsx;relationships_medhya.txt,33;82
+Pathology,Bhaya,,Category_Medhya.xlsx;relationships_medhya.txt,21;96
+Pathology,Bheda,,Category_Medhya.xlsx,43
+Pathology,Bhrama,,Category_Medhya.xlsx,9
+Pathology,Budhibhramsha,,Category_Medhya.xlsx;relationships_medhya.txt,12;3;10;7;53
+Pathology,Chittabhrama,,Category_Medhya.xlsx;relationships_medhya.txt,22;3;9;10;56
+Pathology,Dhritikshaya,,Category_Medhya.xlsx;relationships_medhya.txt,24;6;10;11;77;109
+Pathology,Dhyana,,Category_Medhya.xlsx,15
+Pathology,Dhī-vibhrama,,Category_Medhya.xlsx;relationships_medhya.txt,26;8;54
+Pathology,Dhṛti-hāni,,Category_Medhya.xlsx;relationships_medhya.txt,27;12;57
+Pathology,Durmana,,Category_Medhya.xlsx;relationships_medhya.txt,25;13;58
+Pathology,Gadgadam,,Category_Medhya.xlsx;relationships_medhya.txt,35;4;84
+Pathology,Klama,,Category_Medhya.xlsx;relationships_medhya.txt,16;5;6;7;11;103;111;120
+Pathology,Kopanam,,Category_Medhya.xlsx;relationships_medhya.txt,30;16;59
+Pathology,Krodha,,Category_Medhya.xlsx;relationships_medhya.txt,8;15
+Pathology,Mada,,Category_Medhya.xlsx;relationships_medhya.txt,20;79
+Pathology,Mano-vibhrama,,Category_Medhya.xlsx;relationships_medhya.txt,28;9;10;9;41;55
+Pathology,Mathibhramsha,,Category_Medhya.xlsx;relationships_medhya.txt,11;6;40
+Pathology,Moorcha,,Category_Medhya.xlsx;relationships_medhya.txt,19;80
+Pathology,Mūkata,,Category_Medhya.xlsx;relationships_medhya.txt,36;4;85
+Pathology,Ojokshaya,,Category_Medhya.xlsx;relationships_medhya.txt,13;5;6;11;102;110
+Pathology,Prakopa,,Category_Medhya.xlsx,39
+Pathology,Pralapa,,Category_Medhya.xlsx;relationships_medhya.txt,3;4;76
+Pathology,Prasara,,Category_Medhya.xlsx,40
+Pathology,Rosham,,Category_Medhya.xlsx;relationships_medhya.txt,31;17;43
+Pathology,Samjnanasa,,Category_Medhya.xlsx;relationships_medhya.txt,23;19;81;98
+Pathology,Sanchaya,,Category_Medhya.xlsx,38
+Pathology,Sanyasa,,Category_Medhya.xlsx,18
+Pathology,Shoka,,Category_Medhya.xlsx;relationships_medhya.txt,14;42
+Pathology,Smriti Bhramsha,,Category_Medhya.xlsx,5
+Pathology,Smriti bhramsha,,relationships_medhya.txt,4
+Pathology,Smritibhramsha,,Category_Medhya.xlsx,8
+Pathology,Smritihani,,Category_Medhya.xlsx;relationships_medhya.txt,6;3;7;8;5;39;52
+Pathology,Smritinasa,,Category_Medhya.xlsx;relationships_medhya.txt,2;3;9;10;3;38;51
+Pathology,Sthanasamshraya,,Category_Medhya.xlsx,41
+Pathology,Svarabheda,,Category_Medhya.xlsx;relationships_medhya.txt,37;60;86
+Pathology,Tandra,,Category_Medhya.xlsx;relationships_medhya.txt,17;4;78
+Pathology,Unmada,,Category_Medhya.xlsx;relationships_medhya.txt,4;20;61
+Pathology,Vikriti,,Category_Medhya.xlsx,44;11
+Pathology,Vishada,,Category_Medhya.xlsx;relationships_medhya.txt,10;14
+Pathology,Vyakti,,Category_Medhya.xlsx,42
+Pathology,Vāk-vaiguṇya,,Category_Medhya.xlsx;relationships_medhya.txt,34;4;83
+Pathology,cognitive disturbance,,Category_Medhya.xlsx,5
+PharmacologicalConcept,Dravya,,Category_Medhya.xlsx,38
+PharmacologicalConcept,Guna,,Category_Medhya.xlsx,39
+PharmacologicalConcept,Prabhava,,Category_Medhya.xlsx,42
+PharmacologicalConcept,Vipaka,,Category_Medhya.xlsx,41
+PharmacologicalConcept,Virya,,Category_Medhya.xlsx,40
+PhysiologicalFunction,Abhyantara Marga,,Category_Medhya.xlsx,136
+PhysiologicalFunction,Abhyāsa,,Category_Medhya.xlsx,42
+PhysiologicalFunction,Adhyavasāya,,Category_Medhya.xlsx,33
+PhysiologicalFunction,Adhyayana,,Category_Medhya.xlsx,41
+PhysiologicalFunction,Agni,,Category_Medhya.xlsx,77
+PhysiologicalFunction,Ahara,,Category_Medhya.xlsx,137
+PhysiologicalFunction,Ahara Shakti,,Category_Medhya.xlsx,152
+PhysiologicalFunction,Ahaṅkāra,,Category_Medhya.xlsx,6
+PhysiologicalFunction,Akasha,,Category_Medhya.xlsx,75
+PhysiologicalFunction,Akriti,,Category_Medhya.xlsx,147
+PhysiologicalFunction,Alochaka,,Category_Medhya.xlsx,67
+PhysiologicalFunction,Alpa-sattva,,Category_Medhya.xlsx,51
+PhysiologicalFunction,Annavaha,,Category_Medhya.xlsx,110
+PhysiologicalFunction,Anubhava,,Category_Medhya.xlsx,11
+PhysiologicalFunction,Ap,,Category_Medhya.xlsx,80
+PhysiologicalFunction,Apana Vata,,Category_Medhya.xlsx,64
+PhysiologicalFunction,Apara ojas,,Category_Medhya.xlsx,124
+PhysiologicalFunction,Artava,,Category_Medhya.xlsx,89
+PhysiologicalFunction,Asthi,,Category_Medhya.xlsx,86
+PhysiologicalFunction,Asthivaha,,Category_Medhya.xlsx,116
+PhysiologicalFunction,Asthyagni,,Category_Medhya.xlsx,106
+PhysiologicalFunction,Atma,,Category_Medhya.xlsx,129
+PhysiologicalFunction,Avabodha,,Category_Medhya.xlsx,12
+PhysiologicalFunction,Avalambaka,,Category_Medhya.xlsx,70
+PhysiologicalFunction,Avara Sattva,,Category_Medhya.xlsx,15
+PhysiologicalFunction,Avasāda,,Category_Medhya.xlsx,20
+PhysiologicalFunction,Ayushya,,Category_Medhya.xlsx;relationships_medhya.txt,32;11;116
+PhysiologicalFunction,Bahya Marga,,Category_Medhya.xlsx,134
+PhysiologicalFunction,Bala,,Category_Medhya.xlsx;relationships_medhya.txt,5;6;11;105;113
+PhysiologicalFunction,Balya,,Category_Medhya.xlsx;relationships_medhya.txt,33;107;115;123
+PhysiologicalFunction,Bhrajaka,,Category_Medhya.xlsx,69
+PhysiologicalFunction,Bodhaka,,Category_Medhya.xlsx,72
+PhysiologicalFunction,Brahmacharya,,Category_Medhya.xlsx,139
+PhysiologicalFunction,Buddhi,,Category_Medhya.xlsx;relationships_medhya.txt,155;25;65
+PhysiologicalFunction,Chitta,,Category_Medhya.xlsx;relationships_medhya.txt,156;28;48;68
+PhysiologicalFunction,Cinta,,Category_Medhya.xlsx,18
+PhysiologicalFunction,Citta-vikṣepa,,Category_Medhya.xlsx,52
+PhysiologicalFunction,Dainya,,Category_Medhya.xlsx,25
+PhysiologicalFunction,Danta,,Category_Medhya.xlsx,97
+PhysiologicalFunction,Darshana,,Category_Medhya.xlsx,140
+PhysiologicalFunction,Dharana,,Category_Medhya.xlsx,172
+PhysiologicalFunction,Dhatvagni,,Category_Medhya.xlsx,101
+PhysiologicalFunction,Dhi,,Category_Medhya.xlsx;relationships_medhya.txt,157;3;4;8;10;24;87
+PhysiologicalFunction,Dhriti,,Category_Medhya.xlsx;relationships_medhya.txt,170;10;26;66;88
+PhysiologicalFunction,Dhāraṇā,,Category_Medhya.xlsx,38
+PhysiologicalFunction,Drik,,Category_Medhya.xlsx,146
+PhysiologicalFunction,Dveṣa,,Category_Medhya.xlsx,30
+PhysiologicalFunction,Ekāgratā,,Category_Medhya.xlsx,53
+PhysiologicalFunction,Gandha,,Category_Medhya.xlsx,128
+PhysiologicalFunction,Glāni,,Category_Medhya.xlsx,26
+PhysiologicalFunction,Grahaṇa,,Category_Medhya.xlsx,39
+PhysiologicalFunction,Harsha,,Category_Medhya.xlsx,17
+PhysiologicalFunction,Icha,,Category_Medhya.xlsx,7
+PhysiologicalFunction,Indriya,,Category_Medhya.xlsx,47
+PhysiologicalFunction,Indriyabuddhi,,Category_Medhya.xlsx,49
+PhysiologicalFunction,Indriyārtha,,Category_Medhya.xlsx,48
+PhysiologicalFunction,Jala,,Category_Medhya.xlsx,79
+PhysiologicalFunction,Jeevaniya,,Category_Medhya.xlsx;relationships_medhya.txt,35;106
+PhysiologicalFunction,Jihva,,Category_Medhya.xlsx,145
+PhysiologicalFunction,Jnana,,Category_Medhya.xlsx,168
+PhysiologicalFunction,Kala,,Category_Medhya.xlsx,158
+PhysiologicalFunction,Kalaja Bala,,Category_Medhya.xlsx,131
+PhysiologicalFunction,Kama,,Category_Medhya.xlsx,21
+PhysiologicalFunction,Kandara,,Category_Medhya.xlsx,92
+PhysiologicalFunction,Kapha,,Category_Medhya.xlsx,59
+PhysiologicalFunction,Kledaka,,Category_Medhya.xlsx,71
+PhysiologicalFunction,Kshaamata,,Category_Medhya.xlsx,56
+PhysiologicalFunction,Kṣamatā,,Category_Medhya.xlsx,55
+PhysiologicalFunction,Lobha,,Category_Medhya.xlsx,22
+PhysiologicalFunction,Madhyama Marga,,Category_Medhya.xlsx,135
+PhysiologicalFunction,Madhyama Sattva,,Category_Medhya.xlsx,14
+PhysiologicalFunction,Majja,,Category_Medhya.xlsx,87
+PhysiologicalFunction,Majjagni,,Category_Medhya.xlsx,107
+PhysiologicalFunction,Majjavaha,,Category_Medhya.xlsx,117
+PhysiologicalFunction,Mala,,Category_Medhya.xlsx,144
+PhysiologicalFunction,Mamsa,,Category_Medhya.xlsx,84
+PhysiologicalFunction,Mamsagni,,Category_Medhya.xlsx,104
+PhysiologicalFunction,Mamsavaha,,Category_Medhya.xlsx,114
+PhysiologicalFunction,Manana,,Category_Medhya.xlsx,35
+PhysiologicalFunction,Manas,,Category_Medhya.xlsx;relationships_medhya.txt,159;4;9;27;47;67;89;97
+PhysiologicalFunction,Mano-Indriya Saṃyoga,,Category_Medhya.xlsx,50
+PhysiologicalFunction,Manovaha,,Category_Medhya.xlsx,122
+PhysiologicalFunction,Manusya,,Category_Medhya.xlsx,160
+PhysiologicalFunction,Mati,,Category_Medhya.xlsx,169
+PhysiologicalFunction,Meda,,Category_Medhya.xlsx,85
+PhysiologicalFunction,Medagni,,Category_Medhya.xlsx,105
+PhysiologicalFunction,Medha,,Category_Medhya.xlsx;relationships_medhya.txt,161;3;5;7;8;9;10;23;46;64
+PhysiologicalFunction,Medhya,,relationships_medhya.txt,34;50;73
+PhysiologicalFunction,Medovaha,,Category_Medhya.xlsx,115
+PhysiologicalFunction,Moha,,Category_Medhya.xlsx,16
+PhysiologicalFunction,Mutra,,Category_Medhya.xlsx,99
+PhysiologicalFunction,Mutravaha,,Category_Medhya.xlsx,119
+PhysiologicalFunction,Mātsarya,,Category_Medhya.xlsx,23
+PhysiologicalFunction,Nadi,,Category_Medhya.xlsx,143
+PhysiologicalFunction,Natya,,Category_Medhya.xlsx,162
+PhysiologicalFunction,Nidra,,Category_Medhya.xlsx,138
+PhysiologicalFunction,Nirṇaya,,Category_Medhya.xlsx,34
+PhysiologicalFunction,Ojas,,Category_Medhya.xlsx;relationships_medhya.txt,163;5;6;7;11;33;104;112
+PhysiologicalFunction,Ojovardhana,,Category_Medhya.xlsx,34
+PhysiologicalFunction,Pachaka,,Category_Medhya.xlsx,65
+PhysiologicalFunction,Para ojas,,Category_Medhya.xlsx,123
+PhysiologicalFunction,Pitta,,Category_Medhya.xlsx,58
+PhysiologicalFunction,Prajna,,Category_Medhya.xlsx,164
+PhysiologicalFunction,Prajñāparādha,,Category_Medhya.xlsx,43
+PhysiologicalFunction,Prakriti,,Category_Medhya.xlsx,133
+PhysiologicalFunction,Pramana,,Category_Medhya.xlsx,150
+PhysiologicalFunction,Prana Vata,,Category_Medhya.xlsx,60
+PhysiologicalFunction,Pranavaha,,Category_Medhya.xlsx,109
+PhysiologicalFunction,Prashna,,Category_Medhya.xlsx,142
+PhysiologicalFunction,Pratibhā,,Category_Medhya.xlsx,10
+PhysiologicalFunction,Pratyabhijñā,,Category_Medhya.xlsx,40
+PhysiologicalFunction,Pratyaya,,Category_Medhya.xlsx,9
+PhysiologicalFunction,Pravara Sattva,,Category_Medhya.xlsx,13
+PhysiologicalFunction,Prayatna,,Category_Medhya.xlsx,31
+PhysiologicalFunction,Prithvi,,Category_Medhya.xlsx,81
+PhysiologicalFunction,Purisha,,Category_Medhya.xlsx,98
+PhysiologicalFunction,Purishavaha,,Category_Medhya.xlsx,120
+PhysiologicalFunction,Pushti,,Category_Medhya.xlsx;relationships_medhya.txt,6;114;121
+PhysiologicalFunction,Pushtikara,,Category_Medhya.xlsx;relationships_medhya.txt,37;118
+PhysiologicalFunction,Raja,,Category_Medhya.xlsx,91
+PhysiologicalFunction,Rajas,,Category_Medhya.xlsx;relationships_medhya.txt,3;30;49;70;90
+PhysiologicalFunction,Rakta,,Category_Medhya.xlsx,83
+PhysiologicalFunction,Raktagni,,Category_Medhya.xlsx,103
+PhysiologicalFunction,Raktavaha,,Category_Medhya.xlsx,113
+PhysiologicalFunction,Ranjaka,,Category_Medhya.xlsx,66
+PhysiologicalFunction,Rasa,,Category_Medhya.xlsx,82
+PhysiologicalFunction,Rasagni,,Category_Medhya.xlsx,102
+PhysiologicalFunction,Rasavaha,,Category_Medhya.xlsx,112
+PhysiologicalFunction,Rasayana,,Category_Medhya.xlsx;relationships_medhya.txt,5;6;7;35;74;108;119;122
+PhysiologicalFunction,Rupa,,Category_Medhya.xlsx,127
+PhysiologicalFunction,Sabdadi,,Category_Medhya.xlsx,165
+PhysiologicalFunction,Sadhaka,,Category_Medhya.xlsx,68
+PhysiologicalFunction,Sahaja Bala,,Category_Medhya.xlsx,130
+PhysiologicalFunction,Samana Vata,,Category_Medhya.xlsx,63
+PhysiologicalFunction,Samhanana,,Category_Medhya.xlsx,149
+PhysiologicalFunction,Samjna,,relationships_medhya.txt,32;92;100
+PhysiologicalFunction,Sara,,Category_Medhya.xlsx,148
+PhysiologicalFunction,Satmya,,Category_Medhya.xlsx,151
+PhysiologicalFunction,Sattva,,relationships_medhya.txt,29;69
+PhysiologicalFunction,Satva,,Category_Medhya.xlsx,2
+PhysiologicalFunction,Saṃjñā,,Category_Medhya.xlsx,54
+PhysiologicalFunction,Saṅkalpa,,Category_Medhya.xlsx,28
+PhysiologicalFunction,Shabda,,Category_Medhya.xlsx,125
+PhysiologicalFunction,Shleshaka,,Category_Medhya.xlsx,74
+PhysiologicalFunction,Shukra,,Category_Medhya.xlsx,88
+PhysiologicalFunction,Shukragni,,Category_Medhya.xlsx,108
+PhysiologicalFunction,Shukravaha,,Category_Medhya.xlsx,118
+PhysiologicalFunction,Simhadi,,Category_Medhya.xlsx,166
+PhysiologicalFunction,Sira,,Category_Medhya.xlsx,93
+PhysiologicalFunction,Smaraṇa,,Category_Medhya.xlsx,37
+PhysiologicalFunction,Smriti,,Category_Medhya.xlsx;relationships_medhya.txt,167;3;8;9;10;22;45;63
+PhysiologicalFunction,Snayu,,Category_Medhya.xlsx,96
+PhysiologicalFunction,Sparsha,,Category_Medhya.xlsx,126
+PhysiologicalFunction,Sparshana,,Category_Medhya.xlsx,141
+PhysiologicalFunction,Stanya,,Category_Medhya.xlsx,90
+PhysiologicalFunction,Svara,,relationships_medhya.txt,72;94
+PhysiologicalFunction,Sweda,,Category_Medhya.xlsx,100
+PhysiologicalFunction,Swedavaha,,Category_Medhya.xlsx,121
+PhysiologicalFunction,Tamas,,Category_Medhya.xlsx;relationships_medhya.txt,4;31;71;91;99
+PhysiologicalFunction,Tarka,,Category_Medhya.xlsx,45
+PhysiologicalFunction,Tarpaka,,Category_Medhya.xlsx,73
+PhysiologicalFunction,Tejas,,Category_Medhya.xlsx,78
+PhysiologicalFunction,Twak,,Category_Medhya.xlsx,95
+PhysiologicalFunction,Udakavaha,,Category_Medhya.xlsx,111
+PhysiologicalFunction,Udana Vata,,Category_Medhya.xlsx,61
+PhysiologicalFunction,Udvega,,Category_Medhya.xlsx,19
+PhysiologicalFunction,Utsaha,,Category_Medhya.xlsx,27
+PhysiologicalFunction,Varna (Vak/akshara),,Category_Medhya.xlsx,5
+PhysiologicalFunction,Vasa,,Category_Medhya.xlsx,94
+PhysiologicalFunction,Vata,,Category_Medhya.xlsx,57
+PhysiologicalFunction,Vaya,,Category_Medhya.xlsx,154
+PhysiologicalFunction,Vayasthapana,,Category_Medhya.xlsx;relationships_medhya.txt,36;11;117
+PhysiologicalFunction,Vayu,,Category_Medhya.xlsx,76
+PhysiologicalFunction,Vicakṣaṇatā,,Category_Medhya.xlsx,46
+PhysiologicalFunction,Vichara,,Category_Medhya.xlsx,36
+PhysiologicalFunction,Vijñāna,,Category_Medhya.xlsx,8
+PhysiologicalFunction,Vikalpa,,Category_Medhya.xlsx,29
+PhysiologicalFunction,Viveka,,Category_Medhya.xlsx,171
+PhysiologicalFunction,Vyana Vata,,Category_Medhya.xlsx,62
+PhysiologicalFunction,Vyayama Shakti,,Category_Medhya.xlsx,153
+PhysiologicalFunction,Vāk,,Category_Medhya.xlsx;relationships_medhya.txt,4;93
+PhysiologicalFunction,Yatna,,Category_Medhya.xlsx,32
+PhysiologicalFunction,Yukti,,Category_Medhya.xlsx,44
+PhysiologicalFunction,Yuktikrita Bala,,Category_Medhya.xlsx,132
+PhysiologicalFunction,Īrṣyā,,Category_Medhya.xlsx,24
+Reference,Bhavaprakasha,,relationships_medhya.txt,36
+Reference,Charaka samhita Sutrasthana Shadvirechaneeya 4th chapter,,relationships_medhya.txt,37;95;101

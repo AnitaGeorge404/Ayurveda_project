@@ -1,0 +1,102 @@
+"""
+Step 10: answer generation. Two modes:
+
+1. Deterministic template (always available, zero external dependency) --
+   this is what Step 12 of the spec's example output looks like, and is the
+   default and fallback.
+2. Optional LLM rewrite via the Anthropic API, ONLY invoked when the evidence
+   validator has already said ANSWERABLE, and its output is re-checked by
+   app.grounding before it is ever shown to the user.
+
+The LLM is never given the question without evidence, and is never allowed
+to be the thing that decides whether evidence is sufficient.
+"""
+from app.schemas import Evidence
+from app import config
+
+SYSTEM_PROMPT = """You are a closed-domain question-answering system.
+You must answer ONLY using the supplied evidence.
+The evidence is the only source of truth.
+Do not use pretrained knowledge.
+Do not use general world knowledge.
+Do not infer unsupported scientific facts.
+Do not invent relationships.
+Do not introduce information that is not explicitly supported by the evidence.
+If the evidence does not sufficiently answer the question, output exactly:
+INSUFFICIENT_EVIDENCE"""
+
+
+def _group_by_subject_predicate(evidence: Evidence):
+    groups: dict[tuple[str, str], list[str]] = {}
+    for r in evidence.records:
+        if r.retrieval_method != "structured":
+            continue
+        groups.setdefault((r.subject, r.predicate), []).append(r.value)
+    return groups
+
+
+PREDICATE_PHRASING = {
+    "HAS_ACTION": "has the action(s)",
+    "TREATS_PATHOLOGY": "is associated with treating",
+    "AFFECTS_FUNCTION": "affects the physiological/functional aspect(s) of",
+    "HAS_REFERENCE": "is referenced in",
+    "IS_A": "in the dataset includes",
+}
+
+
+def deterministic_answer(evidence: Evidence) -> str:
+    groups = _group_by_subject_predicate(evidence)
+    if not groups:
+        semantic = [r for r in evidence.records if r.retrieval_method == "semantic"]
+        if semantic:
+            lines = [f"- {r.subject}: {r.value} (similarity {r.score:.2f})" for r in semantic[:5]]
+            return "The most closely related records found in the dataset:\n" + "\n".join(lines)
+        return "INSUFFICIENT_EVIDENCE"
+
+    sentences = []
+    for (subject, predicate), values in groups.items():
+        phrase = PREDICATE_PHRASING.get(predicate, predicate.replace("_", " ").lower())
+        sentences.append(f"{subject} {phrase} {', '.join(sorted(set(values)))}.")
+    return " ".join(sentences)
+
+
+def _evidence_as_text(evidence: Evidence) -> str:
+    lines = []
+    for r in evidence.records:
+        if r.retrieval_method == "structured":
+            lines.append(f"{r.subject} [{r.predicate}] {r.value} (source: {r.source_file} row {r.source_row})")
+        else:
+            lines.append(f"{r.subject}: {r.value} (semantic similarity {r.score:.2f})")
+    return "\n".join(lines)
+
+
+def llm_answer(evidence: Evidence) -> str | None:
+    """Returns None if the LLM step is skipped (no API key, import error, or
+    the LLM itself reports insufficient evidence) -- caller should fall back
+    to deterministic_answer()."""
+    if not config.ANTHROPIC_API_KEY:
+        return None
+    try:
+        import anthropic
+    except ImportError:
+        return None
+
+    client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+    user_content = (
+        f"Question:\n{evidence.question}\n\n"
+        f"Evidence:\n{_evidence_as_text(evidence)}"
+    )
+    try:
+        response = client.messages.create(
+            model=config.LLM_MODEL,
+            max_tokens=400,
+            system=SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": user_content}],
+        )
+        text = "".join(block.text for block in response.content if block.type == "text").strip()
+    except Exception:
+        return None
+
+    if not text or text == "INSUFFICIENT_EVIDENCE":
+        return None
+    return text

@@ -1,0 +1,28 @@
+{
+  "_comment": "Manually curated normalization map derived from inspecting data/raw/Category_Medhya.xlsx column C (Pharmacotherapeutics, 41 raw entries). Every raw string from the spreadsheet must appear in exactly one of the buckets below. Decisions are explained in DATA_CLEANING.md.",
+
+  "herb_aliases": {
+    "Brahmi": ["Brahmi", "Bacopa", "Jalabrahmi"],
+    "Mandukaparni": ["Mandukaparni", "Mandukparni", "Thankuni", "Gotu kola"],
+    "Shankhapushpi": ["Shankhapushpi", "Shankhpushpi", "Sankhpushpi"],
+    "Guduchi": ["Guduchi", "Giloy", "Gudduci", "Amrita"],
+    "Yashtimadhu": ["Yashtimadhu", "Yashti", "Licorice", "Mulethi"],
+    "Vacha": ["Vacha", "Vaca", "Sweet flag", "Calamus"],
+    "Ashwagandha": ["Ashwagandha", "Ashvagandha", "Withania", "Winter cherry"],
+    "Tagara": ["Tagara"],
+    "Jatamansi": ["Jatamansi"],
+    "Simhadi": ["Simhadi"]
+  },
+
+  "category_aliases": {
+    "Medhya Rasayana": ["Medhya Rasayana"],
+    "Rasayana": ["Rasayana"],
+    "Vanausadhi": ["Vanausadhi"]
+  },
+
+  "pharmacological_concepts": ["Dravya", "Guna", "Virya", "Vipaka", "Prabhava"],
+
+  "misfiled_as_pharmacotherapeutics_actually_physiological_function": [
+    "Ayushya", "Balya", "Ojovardhana", "Jeevaniya", "Vayasthapana", "Pushtikara"
+  ]
+}
