@@ -3,6 +3,8 @@ Builds an in-memory alias -> (canonical_name, type) index from whatever the
 graph store currently contains, so entity recognition always reflects the
 live Neo4j data (source of truth) rather than a separate hard-coded list.
 """
+from __future__ import annotations
+
 import re
 
 from app.graph_store import GraphStore

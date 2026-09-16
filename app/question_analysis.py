@@ -6,6 +6,8 @@ and fully enumerable from the graph, so keyword + known-entity matching is
 both sufficient and fully auditable (no black-box intent classifier that
 could quietly generalize outside the dataset).
 """
+from __future__ import annotations
+
 import re
 from dataclasses import dataclass, field
 

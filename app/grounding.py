@@ -9,6 +9,8 @@ the evidence actually retrieved for this question. If the LLM mentions a real
 dataset entity that was NOT part of its evidence, that is a hallucination
 (it reached for outside/adjacent knowledge) and the answer is rejected.
 """
+from __future__ import annotations
+
 import re
 
 from app.normalization import EntityIndex

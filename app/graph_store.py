@@ -8,6 +8,8 @@ Neo4j connection.
 Neo4j remains the sole source of truth for the running system -- the fake
 store exists only for offline unit testing of the logic around it.
 """
+from __future__ import annotations
+
 import csv
 from abc import ABC, abstractmethod
 from pathlib import Path

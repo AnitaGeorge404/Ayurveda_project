@@ -11,6 +11,8 @@ Step 10: answer generation. Two modes:
 The LLM is never given the question without evidence, and is never allowed
 to be the thing that decides whether evidence is sufficient.
 """
+from __future__ import annotations
+
 from app.schemas import Evidence
 from app import config
 

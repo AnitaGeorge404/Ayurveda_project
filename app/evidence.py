@@ -1,6 +1,8 @@
 """Step 9: evidence validation gate. If this says insufficient, the LLM is
 never called -- this module is what prevents the LLM from ever answering
 from outside knowledge."""
+from __future__ import annotations
+
 from app.question_analysis import QuestionAnalysis
 from app.schemas import AnswerStatus, Evidence
 from app import config

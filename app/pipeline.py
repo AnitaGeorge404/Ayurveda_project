@@ -4,6 +4,8 @@ Wires together question analysis -> retrieval -> evidence validation ->
 This is the one place that encodes the full architecture diagram end to end,
 kept separate from FastAPI so it is directly unit-testable.
 """
+from __future__ import annotations
+
 from app import grounding, llm_generation, question_analysis, retrieval
 from app.evidence import validate
 from app.graph_store import GraphStore

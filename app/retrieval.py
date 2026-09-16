@@ -3,6 +3,8 @@ Steps 6-9: structured (Cypher-backed) retrieval first, optional semantic
 fallback second, then assembly into an Evidence object. No LLM is involved
 anywhere in this file.
 """
+from __future__ import annotations
+
 from app.graph_store import GraphStore
 from app.normalization import EntityIndex
 from app.question_analysis import QuestionAnalysis
