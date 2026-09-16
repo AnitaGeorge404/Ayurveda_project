@@ -49,6 +49,24 @@ class GraphStore(ABC):
 
 class Neo4jGraphStore(GraphStore):
     def __init__(self):
+        missing = [
+            name for name, value in [
+                ("NEO4J_URI", config.NEO4J_URI),
+                ("NEO4J_USERNAME", config.NEO4J_USERNAME),
+                ("NEO4J_PASSWORD", config.NEO4J_PASSWORD),
+            ] if not value
+        ]
+        if missing:
+            # Fail with an actionable message instead of letting the neo4j
+            # driver raise a cryptic AttributeError deep inside its own URI/
+            # auth parsing when a value is empty or None. NEO4J_DATABASE is
+            # intentionally not required here -- None is the driver's own
+            # documented way to select the server's default database.
+            raise RuntimeError(
+                f"Missing required environment variable(s): {', '.join(missing)}. "
+                "Set them in your deployment platform's environment variables "
+                "(see .env.example) and redeploy."
+            )
         self._driver = GraphDatabase.driver(
             config.NEO4J_URI, auth=(config.NEO4J_USERNAME, config.NEO4J_PASSWORD)
         )

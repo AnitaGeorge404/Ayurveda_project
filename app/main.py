@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 
 from app.graph_store import Neo4jGraphStore
@@ -39,12 +39,15 @@ def health():
 def ask(req: AskRequest):
     try:
         store, index = get_store_and_index()
+        return answer_question(store, index, req.question)
+    except HTTPException:
+        raise
     except Exception as e:
-        # Give a clearer error if Neo4j driver fails to connect (e.g. missing env vars)
-        from fastapi import HTTPException
-        raise HTTPException(status_code=500, detail=f"Graph database connection failed: {str(e)}")
-        
-    return answer_question(store, index, req.question)
+        # Anything here is a deployment/connectivity problem (missing env var,
+        # wrong credentials, unreachable host), never something caused by the
+        # user's question -- surface the real reason instead of a bare 500 so
+        # it's debuggable from the deployed site alone.
+        raise HTTPException(status_code=503, detail=f"Graph database connection failed: {e}")
 
 
 if FRONTEND_DIR.exists():
