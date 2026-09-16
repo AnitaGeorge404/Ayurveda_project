@@ -2,130 +2,44 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ayurveda GraphRAG QA</title>
-<style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 6rem;
-    background: #fafaf8; color: #1b1b1b;
-  }
-  h1 { font-size: 1.15rem; margin-bottom: 0.1rem; }
-  .subtitle { color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }
-  .msg { margin: 0.9rem 0; padding: 0.75rem 1rem; border-radius: 10px; line-height: 1.45; }
-  .msg.user { background: #e8f0fe; margin-left: 15%; }
-  .msg.system { background: #fff; border: 1px solid #e2e2e0; margin-right: 15%; }
-  .status-tag {
-    display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em;
-    padding: 0.1rem 0.5rem; border-radius: 999px; margin-bottom: 0.4rem; text-transform: uppercase;
-  }
-  .status-ANSWERABLE { background: #d7f2df; color: #146c2e; }
-  .status-OUT_OF_DOMAIN { background: #f2f0d7; color: #6c5c14; }
-  .status-INSUFFICIENT_EVIDENCE { background: #f2d7d7; color: #8a1f1f; }
-  details { margin-top: 0.5rem; font-size: 0.8rem; color: #444; }
-  summary { cursor: pointer; color: #555; }
-  .evidence-item { padding: 0.15rem 0; border-bottom: 1px dotted #ddd; }
-  form {
-    position: fixed; bottom: 0; left: 0; right: 0; background: #fafaf8;
-    border-top: 1px solid #e2e2e0; padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
-    display: flex; gap: 0.5rem; max-width: 760px; margin: 0 auto;
-  }
-  input[type=text] { flex: 1; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid #ccc; font-size: 0.95rem; }
-  button { padding: 0.6rem 1rem; border-radius: 8px; border: none; background: #1a5fb4; color: white; font-size: 0.95rem; cursor: pointer; }
-  button:disabled { opacity: 0.5; }
-  @media (prefers-color-scheme: dark) {
-    body { background: #16171a; color: #e8e8e6; }
-    .msg.system { background: #202226; border-color: #33353a; }
-    .msg.user { background: #22334d; }
-    form { background: #16171a; border-color: #33353a; }
-    input[type=text] { background: #202226; color: #e8e8e6; border-color: #444; }
-  }
-</style>
+<meta name="description" content="Closed-domain question answering over a Neo4j graph built from the Medhya Rasayana dataset.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Ayurveda / Medhya Rasayana — Dataset QA</h1>
-  <div class="subtitle">Closed-domain: answers come only from the Neo4j graph built from the project dataset. Out-of-scope or unsupported questions are refused.</div>
-  <div id="chat"></div>
-  <form id="form">
-    <input id="input" type="text" placeholder="e.g. What pathologies does Brahmi treat?" autocomplete="off" />
-    <button type="submit" id="send">Ask</button>
+  <div class="wrap">
+    <div class="eyebrow">Closed-domain query system</div>
+    <h1>Ayurveda / Medhya Rasayana</h1>
+    <p class="lede">
+      Answers come only from the Neo4j graph built out of the project
+      dataset. Out-of-scope questions and questions the graph can't support
+      are refused, not guessed.
+    </p>
+
+    <div class="chips" id="chips"></div>
+
+    <div id="log" role="log" aria-live="polite"></div>
+
+    <p class="empty-hint" id="emptyHint">Ask a question, or pick one above, to get started.</p>
+
+    <footer class="credit">
+      <span id="healthDot" class="health-dot" title="Checking backend…"></span>
+      <span id="healthText">Checking backend…</span>
+      · <a href="https://github.com/AnitaGeorge404/Ayurveda_project" target="_blank" rel="noopener">source &amp; architecture</a>
+    </footer>
+  </div>
+
+  <form id="askform">
+    <div class="form-inner">
+      <input id="q" type="text" placeholder="e.g. What pathologies does Brahmi treat?" autocomplete="off" aria-label="Ask a question about the Medhya Rasayana dataset">
+      <button id="ask" type="submit">Ask</button>
+    </div>
   </form>
 
-<script>
-const chat = document.getElementById('chat');
-const form = document.getElementById('form');
-const input = document.getElementById('input');
-const send = document.getElementById('send');
-
-function addUserMsg(text) {
-  const el = document.createElement('div');
-  el.className = 'msg user';
-  el.textContent = text;
-  chat.appendChild(el);
-  window.scrollTo(0, document.body.scrollHeight);
-}
-
-function addSystemMsg(resp) {
-  const el = document.createElement('div');
-  el.className = 'msg system';
-  const tag = document.createElement('span');
-  tag.className = 'status-tag status-' + resp.status;
-  tag.textContent = resp.status.replace(/_/g, ' ');
-  el.appendChild(tag);
-  const p = document.createElement('div');
-  p.textContent = resp.answer;
-  el.appendChild(p);
-
-  if (resp.evidence && resp.evidence.length) {
-    const details = document.createElement('details');
-    const summary = document.createElement('summary');
-    summary.textContent = `Evidence (${resp.evidence.length} record(s))`;
-    details.appendChild(summary);
-    resp.evidence.slice(0, 30).forEach(r => {
-      const div = document.createElement('div');
-      div.className = 'evidence-item';
-      div.textContent = `${r.subject} [${r.predicate}] ${r.value}` +
-        (r.source_file ? ` — source: ${r.source_file} row ${r.source_row}` : '');
-      details.appendChild(div);
-    });
-    el.appendChild(details);
-  }
-  if (resp.sources && resp.sources.length) {
-    const src = document.createElement('div');
-    src.style.marginTop = '0.4rem';
-    src.style.fontSize = '0.75rem';
-    src.style.color = '#777';
-    src.textContent = 'Sources: ' + resp.sources.join(', ');
-    el.appendChild(src);
-  }
-
-  chat.appendChild(el);
-  window.scrollTo(0, document.body.scrollHeight);
-}
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const question = input.value.trim();
-  if (!question) return;
-  addUserMsg(question);
-  input.value = '';
-  send.disabled = true;
-  try {
-    const res = await fetch('/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question }),
-    });
-    const data = await res.json();
-    addSystemMsg(data);
-  } catch (err) {
-    addSystemMsg({ status: 'OUT_OF_DOMAIN', answer: 'Could not reach the backend: ' + err, evidence: [], sources: [] });
-  } finally {
-    send.disabled = false;
-    input.focus();
-  }
-});
-</script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -30,7 +30,9 @@ data/processed/           cleaned, provenance-carrying CSVs (output of scripts/i
 scripts/ingest_excel.py   Step 1: Excel/text -> cleaned CSVs
 scripts/load_neo4j.py     Step 2/4: CSVs -> Neo4j (idempotent MERGE, with constraints)
 app/                      the QA system (see ARCHITECTURE.md)
-frontend/index.html       single-page chat UI, calls POST /ask
+frontend/                 chat UI (index.html + style.css + script.js), calls POST /api/ask
+api/index.py              Vercel serverless entrypoint -- re-exports app/main.py's FastAPI app
+vercel.json               routes /api/* to api/index.py; everything else serves frontend/ as static
 tests/                    pytest suite + tests/run_eval.py (metrics)
 ```
 
@@ -38,9 +40,12 @@ tests/                    pytest suite + tests/run_eval.py (metrics)
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt -r requirements-dev.txt
 cp .env.example .env   # fill in your real Neo4j credentials
 ```
+`requirements.txt` is the slim runtime set (what Vercel actually installs for
+the serverless function); `requirements-dev.txt` adds what only the ingestion
+pipeline, tests, and eval script need (pandas, openpyxl, scikit-learn, pytest).
 
 ### 1. Clean & normalize the raw data
 
@@ -58,14 +63,48 @@ python scripts/load_neo4j.py
 Creates uniqueness constraints and `MERGE`s every node/relationship with
 provenance (`source_file`, `source_row`, `source_text`). Safe to re-run.
 
-### 3. Run the API + chat UI
+### 3. Run the API + chat UI locally
 
 ```bash
 uvicorn app.main:app --reload
 ```
-Open http://localhost:8000 for the chat UI, or `POST /ask {"question": "..."}`.
+Open http://localhost:8000 for the chat UI, or `POST /api/ask {"question": "..."}`.
 
-### 4. Run tests / evaluation
+### 4. Deploy to Vercel
+
+The repo is already laid out for Vercel: `api/index.py` exposes the FastAPI
+app as a serverless function, `vercel.json` routes `/api/*` to it, and
+everything else (`frontend/`) is served as static files at the same domain
+— one deploy, one URL, frontend and backend together.
+
+```bash
+npm i -g vercel     # if you don't have the CLI
+vercel login
+vercel               # from the repo root; accept the defaults (no framework preset needed)
+```
+Then set the environment variables Vercel will need at runtime — either in
+the dashboard (Project → Settings → Environment Variables) or via CLI:
+```bash
+vercel env add NEO4J_URI
+vercel env add NEO4J_USERNAME
+vercel env add NEO4J_PASSWORD
+vercel env add NEO4J_DATABASE
+# optional:
+vercel env add ANTHROPIC_API_KEY
+```
+Redeploy after adding env vars (`vercel --prod`). The same live database is
+used — nothing about the graph or the answers changes, only where the API
+is hosted. `.vercelignore` excludes the raw/processed data files, scripts,
+and tests from the deployed bundle (Neo4j is queried live; nothing needs to
+ship with the function).
+
+> Cold-start note: `app/main.py` initializes the Neo4j driver lazily on the
+> first request per warm serverless instance (`get_store_and_index()`), not
+> via a startup event — this works the same whether the app is run under
+> `uvicorn` or invoked as a Vercel function, where ASGI lifespan events
+> aren't guaranteed to fire.
+
+### 5. Run tests / evaluation
 
 ```bash
 pytest tests/test_pipeline.py -v

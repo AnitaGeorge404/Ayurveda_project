@@ -1,0 +1,9 @@
+# Extra dependencies needed only for local development: the ingestion
+# pipeline, tests, and the optional TF-IDF semantic-retrieval fallback.
+# Not installed on Vercel -- app/retrieval.py imports scikit-learn lazily
+# and simply skips semantic retrieval if it isn't present.
+pandas
+openpyxl
+scikit-learn
+pytest
+httpx

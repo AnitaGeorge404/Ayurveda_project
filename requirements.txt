@@ -1,12 +1,13 @@
+# Runtime dependencies only (what app/ actually imports to serve requests).
+# This is what Vercel's Python builder installs for api/index.py -- kept
+# slim on purpose to keep the serverless bundle small and cold starts fast.
+# For local development (ingestion pipeline, tests, eval), also install
+# requirements-dev.txt: pip install -r requirements.txt -r requirements-dev.txt
 fastapi
 uvicorn[standard]
 pydantic>=2
 python-dotenv
 neo4j
-pandas
-openpyxl
-scikit-learn
-pytest
 
 # Optional -- only needed if you set ANTHROPIC_API_KEY to enable the LLM
 # answer-generation step. The system is fully functional without it (falls

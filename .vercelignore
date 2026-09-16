@@ -1,0 +1,8 @@
+data/raw
+data/processed
+scripts
+tests
+requirements-dev.txt
+DATA_CLEANING.md
+ARCHITECTURE.md
+conftest.py

@@ -16,28 +16,27 @@ app = FastAPI(title="Ayurveda GraphRAG QA (closed-domain)")
 _state = {}
 
 
-@app.on_event("startup")
-def startup():
-    store = Neo4jGraphStore()
-    _state["store"] = store
-    _state["index"] = EntityIndex(store)
+def get_store_and_index():
+    """Lazy singleton instead of a startup event: this must work identically
+    whether the app is run with `uvicorn` (where lifespan events fire) or as a
+    Vercel serverless function (where they may not) -- and it doubles as
+    connection reuse across warm serverless invocations on the same instance."""
+    if "store" not in _state:
+        store = Neo4jGraphStore()
+        _state["store"] = store
+        _state["index"] = EntityIndex(store)
+    return _state["store"], _state["index"]
 
 
-@app.on_event("shutdown")
-def shutdown():
-    store = _state.get("store")
-    if store:
-        store.close()
-
-
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
 
 
-@app.post("/ask", response_model=AskResponse)
+@app.post("/api/ask", response_model=AskResponse)
 def ask(req: AskRequest):
-    return answer_question(_state["store"], _state["index"], req.question)
+    store, index = get_store_and_index()
+    return answer_question(store, index, req.question)
 
 
 if FRONTEND_DIR.exists():
