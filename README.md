@@ -14,7 +14,7 @@ for how the raw spreadsheet was normalized into the graph schema.
 |---|---|
 | Never answer from LLM pretrained knowledge | `app/evidence.py` gates the LLM call entirely; `app/pipeline.py` only invokes `llm_generation.llm_answer()` after `AnswerStatus.ANSWERABLE` |
 | Neo4j is the sole source of truth | All entity recognition (`app/normalization.py`) and retrieval (`app/retrieval.py`) query the live graph; nothing is hard-coded |
-| No fine-tuning / training | Uses an existing hosted LLM (Anthropic API) purely for phrasing, optionally |
+| No fine-tuning / training | Uses an existing hosted LLM (Gemini API) purely for phrasing, optionally |
 | Entity normalization with provenance | `data/canonical_entities.json` + `scripts/ingest_excel.py`, documented in `DATA_CLEANING.md` |
 | Evidence threshold, configurable | `EVIDENCE_THRESHOLD` env var, used only for the semantic-retrieval fallback |
 | Grounding validation | `app/grounding.py`, deterministic |
@@ -90,7 +90,7 @@ vercel env add NEO4J_USERNAME
 vercel env add NEO4J_PASSWORD
 vercel env add NEO4J_DATABASE
 # optional:
-vercel env add ANTHROPIC_API_KEY
+vercel env add GEMINI_API_KEY
 ```
 Redeploy after adding env vars (`vercel --prod`). The same live database is
 used — nothing about the graph or the answers changes, only where the API
