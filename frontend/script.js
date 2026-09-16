@@ -106,7 +106,14 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        let msg = `HTTP ${res.status}`;
+        try {
+          const errData = await res.json();
+          if (errData.detail) msg += `: ${errData.detail}`;
+        } catch (e) {}
+        throw new Error(msg);
+      }
       const data = await res.json();
       renderSystem(typingRow, data);
     } catch (err) {

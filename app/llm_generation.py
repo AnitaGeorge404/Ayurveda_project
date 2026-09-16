@@ -4,7 +4,7 @@ Step 10: answer generation. Two modes:
 1. Deterministic template (always available, zero external dependency) --
    this is what Step 12 of the spec's example output looks like, and is the
    default and fallback.
-2. Optional LLM rewrite via the Anthropic API, ONLY invoked when the evidence
+2. Optional LLM rewrite via the Gemini API, ONLY invoked when the evidence
    validator has already said ANSWERABLE, and its output is re-checked by
    app.grounding before it is ever shown to the user.
 
@@ -76,26 +76,28 @@ def llm_answer(evidence: Evidence) -> str | None:
     """Returns None if the LLM step is skipped (no API key, import error, or
     the LLM itself reports insufficient evidence) -- caller should fall back
     to deterministic_answer()."""
-    if not config.ANTHROPIC_API_KEY:
+    if not config.GEMINI_API_KEY:
         return None
     try:
-        import anthropic
+        from google import genai
     except ImportError:
         return None
 
-    client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+    client = genai.Client(api_key=config.GEMINI_API_KEY)
     user_content = (
         f"Question:\n{evidence.question}\n\n"
         f"Evidence:\n{_evidence_as_text(evidence)}"
     )
     try:
-        response = client.messages.create(
+        response = client.models.generate_content(
             model=config.LLM_MODEL,
-            max_tokens=400,
-            system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": user_content}],
+            contents=user_content,
+            config=genai.types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+                max_output_tokens=400,
+            )
         )
-        text = "".join(block.text for block in response.content if block.type == "text").strip()
+        text = response.text.strip() if response.text else ""
     except Exception:
         return None
 

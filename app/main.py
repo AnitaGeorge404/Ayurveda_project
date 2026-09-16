@@ -37,7 +37,13 @@ def health():
 
 @app.post("/api/ask", response_model=AskResponse)
 def ask(req: AskRequest):
-    store, index = get_store_and_index()
+    try:
+        store, index = get_store_and_index()
+    except Exception as e:
+        # Give a clearer error if Neo4j driver fails to connect (e.g. missing env vars)
+        from fastapi import HTTPException
+        raise HTTPException(status_code=500, detail=f"Graph database connection failed: {str(e)}")
+        
     return answer_question(store, index, req.question)
 
 

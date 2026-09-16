@@ -27,7 +27,7 @@ EVIDENCE_THRESHOLD = float(_env("EVIDENCE_THRESHOLD", "0.80"))
 # Optional LLM answer-generation step (architecture diagram marks it optional).
 # If unset, the system falls back to a deterministic template answer built
 # directly from the retrieved evidence -- still fully functional and grounded.
-ANTHROPIC_API_KEY = _env("ANTHROPIC_API_KEY")
-LLM_MODEL = _env("LLM_MODEL", "claude-sonnet-5")
+GEMINI_API_KEY = _env("GEMINI_API_KEY")
+LLM_MODEL = _env("LLM_MODEL", "gemini-2.5-flash")
 
 USE_SEMANTIC_RETRIEVAL = _env("USE_SEMANTIC_RETRIEVAL", "true").lower() == "true"

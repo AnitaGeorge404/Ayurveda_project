@@ -9,7 +9,7 @@ pydantic>=2
 python-dotenv
 neo4j
 
-# Optional -- only needed if you set ANTHROPIC_API_KEY to enable the LLM
+# Optional -- only needed if you set GEMINI_API_KEY to enable the LLM
 # answer-generation step. The system is fully functional without it (falls
 # back to a deterministic template answer).
-anthropic
+google-genai
