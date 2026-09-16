@@ -26,7 +26,9 @@ load_dotenv(ROOT / ".env")
 NEO4J_URI = os.environ["NEO4J_URI"]
 NEO4J_USERNAME = os.environ["NEO4J_USERNAME"]
 NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
-NEO4J_DATABASE = os.environ.get("NEO4J_DATABASE", "neo4j")
+NEO4J_DATABASE = os.environ.get("NEO4J_DATABASE")
+if not NEO4J_DATABASE:
+    NEO4J_DATABASE = None
 
 CONSTRAINED_LABELS = [
     "Herb", "Category", "Action", "Pathology", "PhysiologicalFunction",

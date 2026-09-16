@@ -17,7 +17,7 @@ def _env(key: str, default: str = "") -> str:
 NEO4J_URI = _env("NEO4J_URI")
 NEO4J_USERNAME = _env("NEO4J_USERNAME")
 NEO4J_PASSWORD = _env("NEO4J_PASSWORD")
-NEO4J_DATABASE = _env("NEO4J_DATABASE", "neo4j")
+NEO4J_DATABASE = os.environ.get("NEO4J_DATABASE") or None
 
 # Similarity floor for the optional semantic-retrieval fallback. Candidate
 # retrieval only -- records below this are treated as insufficient evidence.

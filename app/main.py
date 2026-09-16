@@ -23,7 +23,7 @@ def get_store_and_index():
     whether the app is run with `uvicorn` (where lifespan events fire) or as a
     Vercel serverless function (where they may not) -- and it doubles as
     connection reuse across warm serverless invocations on the same instance."""
-    if "store" not in _state:
+    if "store" not in _state or "index" not in _state:
         store = Neo4jGraphStore()
         _state["store"] = store
         _state["index"] = EntityIndex(store)
