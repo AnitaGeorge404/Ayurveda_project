@@ -17,8 +17,15 @@ class EntityIndex:
         for node in store.all_entities():
             name = node["name"]
             node_type = node["type"]
+            if not name or not node_type:
+                # Defensive: a node without a name/label doesn't belong to our
+                # schema at all (e.g. unrelated data sharing the database) --
+                # skip it rather than crash the whole index build over it.
+                continue
             self._by_type.setdefault(node_type, []).append(name)
             for alias in [name] + list(node.get("aliases", [])):
+                if not alias:
+                    continue
                 self._alias_to_entity[alias.strip().lower()] = (name, node_type)
 
         # Sort candidate surface forms longest-first so multi-word aliases

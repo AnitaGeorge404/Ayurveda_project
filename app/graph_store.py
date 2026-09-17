@@ -80,8 +80,15 @@ class Neo4jGraphStore(GraphStore):
             return [r.data() for r in session.run(query, **params)]
 
     def all_entities(self) -> list[dict]:
+        # WHERE n.name IS NOT NULL matters: this MATCH is unqualified by label,
+        # so it would otherwise also sweep up any unrelated node that happens
+        # to exist in the same database (e.g. Aura's demo dataset, or leftover
+        # nodes from an earlier experiment) that has no `name` property at all
+        # -- which previously surfaced as a bare "'NoneType' object has no
+        # attribute 'strip'" deep inside EntityIndex, not as a real answer.
         rows = self._run(
-            "MATCH (n) RETURN n.name AS name, labels(n)[0] AS type, "
+            "MATCH (n) WHERE n.name IS NOT NULL "
+            "RETURN n.name AS name, labels(n)[0] AS type, "
             "coalesce(n.aliases, []) AS aliases"
         )
         return rows
