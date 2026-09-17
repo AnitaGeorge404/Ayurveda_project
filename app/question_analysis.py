@@ -36,6 +36,11 @@ UNSUPPORTED_RELATION_KEYWORDS = [
     "pathway", "dose", "dosage", "side effect", "side effects", "toxicity",
     "contraindication", "gene", "protein", "receptor", "clinical trial",
     "bioavailability", "pharmacokinetics",
+    # Preparation/usage questions: the dataset has no HAS_PREPARATION-style
+    # relationship at all, so these must not fall back to a generic
+    # "describe this entity" dump of unrelated relations (see meeting notes).
+    "prepare", "preparation", "how to make", "how to use", "recipe",
+    "formulation", "how is it made", "administer", "administration",
 ]
 
 INTENT_KEYWORDS = {
