@@ -165,3 +165,6 @@ footer.credit a { color: var(--moss); }
 .health-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-soft); flex-shrink: 0; }
 .health-dot.ok { background: var(--moss); }
 .health-dot.down { background: var(--rust); }
+
+.graph-container { width: 100%; height: 300px; margin-top: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background: rgba(0,0,0,0.2); }
+.btn-visualize { margin-top: 8px; padding: 4px 8px; font-size: 13px; cursor: pointer; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: inherit; border-radius: 4px; }

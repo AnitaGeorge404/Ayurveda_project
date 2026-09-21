@@ -72,7 +72,7 @@ def _evidence_as_text(evidence: Evidence) -> str:
     return "\n".join(lines)
 
 
-def llm_answer(evidence: Evidence) -> str | None:
+def llm_answer(evidence: Evidence, target_language: str = "English") -> str | None:
     """Returns None if the LLM step is skipped (no API key, import error, or
     the LLM itself reports insufficient evidence) -- caller should fall back
     to deterministic_answer()."""
@@ -88,12 +88,17 @@ def llm_answer(evidence: Evidence) -> str | None:
         f"Question:\n{evidence.question}\n\n"
         f"Evidence:\n{_evidence_as_text(evidence)}"
     )
+    
+    sys_prompt = SYSTEM_PROMPT
+    if target_language and target_language.upper() != "ENGLISH":
+        sys_prompt += f"\nIMPORTANT: You must write your final answer in the {target_language} language."
+
     try:
         response = client.models.generate_content(
             model=config.LLM_MODEL,
             contents=user_content,
             config=genai.types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
+                system_instruction=sys_prompt,
                 max_output_tokens=400,
             )
         )
@@ -104,3 +109,30 @@ def llm_answer(evidence: Evidence) -> str | None:
     if not text or text == "INSUFFICIENT_EVIDENCE":
         return None
     return text
+
+def translate_to_english(question: str) -> tuple[str, str]:
+    """Translates the question to English and detects the language.
+    Returns (english_translation, language_name). If translation fails, returns (question, 'English')."""
+    if not config.GEMINI_API_KEY:
+        return question, "English"
+    try:
+        from google import genai
+        client = genai.Client(api_key=config.GEMINI_API_KEY)
+        prompt = (
+            "You are a language detector and translator. "
+            "If the following text is in English, reply exactly with: ENGLISH|{text}. "
+            "If it is in another language, translate it to English and reply with: {Language Name}|{Translated Text}. "
+            f"Text: {question}"
+        )
+        response = client.models.generate_content(
+            model=config.LLM_MODEL,
+            contents=prompt,
+            config=genai.types.GenerateContentConfig(max_output_tokens=150)
+        )
+        text = response.text.strip() if response.text else ""
+        if "|" in text:
+            lang, translated = text.split("|", 1)
+            return translated.strip(), lang.strip()
+    except Exception:
+        pass
+    return question, "English"

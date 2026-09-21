@@ -23,7 +23,7 @@ class EntityIndex:
                 # skip it rather than crash the whole index build over it.
                 continue
             self._by_type.setdefault(node_type, []).append(name)
-            for alias in [name] + list(node.get("aliases", [])):
+            for alias in [name] + list(node.get("aliases", []) or []):
                 if not alias:
                     continue
                 self._alias_to_entity[alias.strip().lower()] = (name, node_type)

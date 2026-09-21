@@ -88,6 +88,49 @@
         if (src) spans[3].textContent = src;
         det.appendChild(rowEl);
       });
+      const btnVis = document.createElement("button");
+      btnVis.className = "btn-visualize";
+      btnVis.textContent = "Visualize Graph";
+      const graphContainer = document.createElement("div");
+      graphContainer.className = "graph-container";
+      graphContainer.style.display = "none";
+      
+      btnVis.addEventListener("click", () => {
+        if (graphContainer.style.display === "none") {
+          graphContainer.style.display = "block";
+          btnVis.textContent = "Hide Graph";
+          
+          const nodes = new vis.DataSet();
+          const edges = new vis.DataSet();
+          const nodeSet = new Set();
+          
+          result.evidence.forEach((r, i) => {
+            if (!nodeSet.has(r.subject)) {
+              nodes.add({ id: r.subject, label: r.subject });
+              nodeSet.add(r.subject);
+            }
+            if (!nodeSet.has(r.value)) {
+              nodes.add({ id: r.value, label: r.value });
+              nodeSet.add(r.value);
+            }
+            edges.add({ from: r.subject, to: r.value, label: PRED_LABEL[r.predicate] || r.predicate, font: {size: 10, align: 'middle'} });
+          });
+          
+          const networkData = { nodes: nodes, edges: edges };
+          const options = {
+            nodes: { shape: 'box', font: { color: '#ffffff' }, color: { background: '#2c3e50', border: '#34495e' } },
+            edges: { color: '#7f8c8d', arrows: 'to' },
+            physics: { barnesHut: { gravitationalConstant: -2000, centralGravity: 0.3, springLength: 95 } }
+          };
+          new vis.Network(graphContainer, networkData, options);
+        } else {
+          graphContainer.style.display = "none";
+          btnVis.textContent = "Visualize Graph";
+        }
+      });
+      
+      det.appendChild(btnVis);
+      det.appendChild(graphContainer);
       bubble.appendChild(det);
     }
 

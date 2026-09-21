@@ -37,14 +37,23 @@ def _sources(evidence) -> list[str]:
 
 
 def answer_question(store: GraphStore, index: EntityIndex, question: str) -> AskResponse:
-    analysis = question_analysis.analyze(question, index)
+    # 1. Translate and detect language
+    english_question, target_language = llm_generation.translate_to_english(question)
+
+    # 2. Analyze the English translation
+    analysis = question_analysis.analyze(english_question, index)
+    
+    # 3. Retrieve evidence using the English analysis
     evidence = retrieval.retrieve(store, index, analysis)
+    
+    # 4. Validate evidence
     status = validate(analysis, evidence)
 
     if status != AnswerStatus.ANSWERABLE:
         return AskResponse(status=status, answer=REFUSAL_TEXT[status], evidence=[], sources=[])
 
-    llm_text = llm_generation.llm_answer(evidence)
+    # 5. Generate answer in the target language
+    llm_text = llm_generation.llm_answer(evidence, target_language=target_language)
     if llm_text is not None:
         grounded, _reason = grounding.is_grounded(llm_text, evidence, index)
         if not grounded:

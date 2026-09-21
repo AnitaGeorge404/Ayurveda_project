@@ -41,6 +41,7 @@ UNSUPPORTED_RELATION_KEYWORDS = [
     # "describe this entity" dump of unrelated relations (see meeting notes).
     "prepare", "preparation", "how to make", "how to use", "recipe",
     "formulation", "how is it made", "administer", "administration",
+    "make", "manufacture", "extract"
 ]
 
 INTENT_KEYWORDS = {
