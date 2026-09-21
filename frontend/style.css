@@ -168,3 +168,8 @@ footer.credit a { color: var(--moss); }
 
 .graph-container { width: 100%; height: 300px; margin-top: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background: rgba(0,0,0,0.2); }
 .btn-visualize { margin-top: 8px; padding: 4px 8px; font-size: 13px; cursor: pointer; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: inherit; border-radius: 4px; }
+
+#mic { background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0 10px; opacity: 0.7; transition: opacity 0.2s, transform 0.2s; }
+#mic:hover { opacity: 1; }
+#mic.listening { color: red; opacity: 1; animation: pulse 1s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }

@@ -193,4 +193,46 @@
     input.value = "";
     ask(question);
   });
+
+  // Voice Input Logic
+  const micButton = document.getElementById("mic");
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  
+  if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    // Don't set hardcoded lang so it inherits from the browser or OS
+    
+    recognition.onstart = function() {
+      micButton.classList.add("listening");
+    };
+    
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript;
+      input.value = transcript;
+      // Auto-submit after transcription
+      button.click();
+    };
+    
+    recognition.onerror = function(event) {
+      console.error("Speech recognition error", event.error);
+      micButton.classList.remove("listening");
+    };
+    
+    recognition.onend = function() {
+      micButton.classList.remove("listening");
+    };
+    
+    micButton.addEventListener("click", () => {
+      if (micButton.classList.contains("listening")) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    });
+  } else {
+    micButton.style.display = "none";
+    console.warn("Speech recognition not supported in this browser.");
+  }
 })();
